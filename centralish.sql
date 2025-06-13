@@ -72,16 +72,18 @@ JOIN fuel ON listing.fuel_id = fuel.id
 WHERE fuel.type = "Electric";
 
 -- 10
--- pas correct
-SELECT DISTINCT model.name 
-FROM `model` 
-JOIN listing ON listing.model_id = model.id 
-JOIN fuel ON listing.fuel_id = fuel.id 
-WHERE fuel.id != 5;
+SELECT model.name, model.id
+FROM model
+WHERE model.id NOT IN (
+	SELECT DISTINCT model_id
+	FROM `listing`
+	WHERE `fuel_id` = 2
+);
 
 -- 11
 SELECT * 
 FROM `listing` 
+ORDER BY created_at DESC 
 LIMIT 40, 20;
 
 -- 12
@@ -106,7 +108,7 @@ WHERE address.user_uuid IS NULL;
 -- 15
 SELECT * 
 FROM `listing`
-JOIN image ON image.listing_uuid = listing.uuid
+LEFT JOIN image ON image.listing_uuid = listing.uuid
 WHERE image.path IS NULL;
 
 -- 16
