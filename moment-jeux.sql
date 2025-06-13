@@ -43,3 +43,10 @@ JOIN user_own_game ON user_own_game.user_id = user.id
 GROUP BY user.nickname;
 
 -- 7
+SELECT * 
+FROM `game`
+JOIN game_category ON game_category.game_id = game.id
+JOIN category ON category.id = game_category.category_id
+WHERE game.price < 30 
+    AND category.name = "fps";
+    
