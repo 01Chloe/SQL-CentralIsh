@@ -117,7 +117,7 @@ GROUP BY image.listing_uuid
 HAVING COUNT(image.listing_uuid) > 1;
 
 -- 17
-SELECT SUM(listing.price / 100) AS "price", brand.name
+SELECT SUM(listing.price) AS "price", brand.name
 FROM `brand`
 JOIN model ON model.brand_id = brand.id
 JOIN listing ON listing.model_id = model.id
