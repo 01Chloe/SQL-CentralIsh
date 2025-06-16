@@ -49,4 +49,16 @@ JOIN game_category ON game_category.game_id = game.id
 JOIN category ON category.id = game_category.category_id
 WHERE game.price < 30 
     AND category.name = "fps";
-    
+
+-- 8
+-- a revoir
+SELECT game.name, GROUP_CONCAT(category.name) AS "Genre(s)"
+FROM `game` 
+JOIN game_category ON game_category.game_id = game.id
+JOIN category ON game_category.category_id = category.id;
+
+-- 9
+-- A finir
+SELECT user.nickname, SUM(game.price) AS "Coût total"
+FROM `game`
+JOIN user_own_game ON user_own_game.game_id = game.id
